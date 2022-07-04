@@ -159,7 +159,7 @@ def editar_numero_telefonico(request, id):
 @permission_required('administrativo.can_create_numero_telefonico_sp2', login_url="/entrando/login/")
 def crear_numero_telefonico_estudiante(request, id):
     """
-    """
+    """ 
     estudiante = Estudiante.objects.get(pk=id)
     if request.method=='POST':
         formulario = NumeroTelefonicoEstudianteForm(estudiante, request.POST)

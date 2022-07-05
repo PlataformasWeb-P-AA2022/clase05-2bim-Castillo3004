@@ -1,0 +1,77 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Listado de Concesionarios
+{% endblock %}
+
+{% block content %}
+<h3>Número de concesionarios {{ numero_concesionarios }}</h3>
+
+<table id="tabla_datos">
+
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Nombre Gerente</th>
+      <th>Autos </th>
+      <th>Motos</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+
+  {% for e in concesionarios %}
+  <tr>
+    <td> {{e.nombre}}</td>
+    <td> {{e.direccion}}</td>
+    <td> {{e.nombre_gerente}}</td>
+    <td>
+      <ul>
+        {% for t in e.losvehiculos.all %}
+          <li>
+            <span>{{t.marca}} - {{t.anio_fabricacion}} - {{t.color}} - {{t.valor_maximo}} <br> <dd>[<a href="{% url 'obtener_auto' t.id %}">Ver</a>] - 
+                [<a href="{% url 'editar_auto' t.id %}">Editar</a>] - 
+                [<a href="{% url 'eliminar_auto' t.id %}">Eliminar</a>]
+                
+            </span>
+
+          </li>
+        {% endfor %}
+      </ul>
+        [<a href="{% url 'crear_auto_concesionario' e.id%}">+Auto</a>]
+        <br>
+        <b>Total Precio Autos:</b> {{ e.obtener_costo_autos }}
+    </td>
+    <td>
+        <ul>
+          {% for c in e.lasmotos.all %}
+            <li>
+              <span>{{c.marca}} - {{c.anio_fabricacion}} - {{c.tipo}} - {{c.valor_fijo_venta}}<br> <dd>[<a href="{% url 'obtener_moto' c.id %}">Ver</a>] - 
+                [<a href="{% url 'editar_moto' c.id %}">Editar</a>] - 
+                [<a href="{% url 'eliminar_moto' c.id %}">Eliminar</a>]</span>
+            </li>
+          {% endfor %}
+        </ul>
+            [<a href="{% url 'crear_moto_concesionario' e.id%}">+Moto</a>]
+            <br>
+            <b>Total Precio Motos:</b> {{ e.obtener_costo_motos }}
+      </td>
+      
+    <td>
+        <a href="{% url 'obtener_concesionario' e.id %}">Ver</a> <br>
+        <a href="{% url 'editar_concesionario' e.id %}">Editar</a> <br>
+        <a href="{% url 'eliminar_concesionario' e.id %}"
+        onclick="return confirm('¿Está seguro de la eliminación?')" >
+        Eliminar</a>
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#tabla_datos').DataTable();
+  });
+</script>
+{% endblock %}

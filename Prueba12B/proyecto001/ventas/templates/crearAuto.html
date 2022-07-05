@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block content %}
+<br>
+<h2>Crear Auto</h2>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{formulario.as_p}}
+  <p><input type='submit' value='Agregar'/></p>
+</form>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<h3>Datos de Auto</h3>
+
+<br>
+<p><b> Marca: </b> {{auto.marca}} </p>
+<p><b>Año Fabricacion: </b>{{auto.anio_fabricacion}}</p>
+<p><b>Valor Minimo: </b>{{auto.valor_minimo}}</p>
+<p><b>Valor Maximo: </b>{{auto.valor_maximo}}</p>
+<p><b>Color: </b>{{auto.color}}</p>
+<p><b>Valor Alarma: </b>{{auto.valor_alarma}}</p>
+<p><b>Concesionario: </b>{{auto.concesionario.nombre}}</p>
+
+{% endblock %}

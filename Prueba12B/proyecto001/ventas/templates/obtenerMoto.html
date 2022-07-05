@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+
+{% block content %}
+
+<h3>Datos de Moto</h3>
+
+<p><b>Marca: </b>{{moto.marca}}</p>
+<p><b>Año Fabricacion: </b>{{moto.anio_fabricacion}}</p>
+<p><b>Valor Fijo Venta: </b>{{moto.valor_fijo_venta}}</p>
+<p><b>Tipo: </b>{{moto.tipo}}</p>
+<p><b>Concesionario: </b>{{moto.concesionario.nombre}}</p>
+
+<br/>
+{% endblock %}
